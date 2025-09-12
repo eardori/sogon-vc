@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
-import { createServerClient } from '@/lib/supabase'
+import { createClient } from '@supabase/supabase-js'
 import { SUBSCRIPTION_PLANS } from '@/lib/stripe'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -12,8 +12,22 @@ export async function POST(request: NextRequest) {
     const { priceId, userType } = await request.json()
     
     // Get user from Supabase
-    const supabase = createServerClient()
-    const { data: { user }, error: authError } = await supabase.auth.getUser()
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!
+    )
+    
+    // Get auth header from request
+    const authHeader = request.headers.get('authorization')
+    if (!authHeader) {
+      return NextResponse.json(
+        { error: '인증 토큰이 필요합니다.' },
+        { status: 401 }
+      )
+    }
+    
+    const token = authHeader.replace('Bearer ', '')
+    const { data: { user }, error: authError } = await supabase.auth.getUser(token)
     
     if (authError || !user) {
       return NextResponse.json(

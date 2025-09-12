@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
-import { createServerClient } from '@/lib/supabase'
+import { createClient } from '@supabase/supabase-js'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2023-10-16',
@@ -24,7 +24,10 @@ export async function POST(request: NextRequest) {
     )
   }
 
-  const supabase = createServerClient()
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  )
 
   try {
     switch (event.type) {
@@ -38,9 +41,9 @@ export async function POST(request: NextRequest) {
           const { error } = await supabase
             .from('profiles')
             .update({
-              subscription_status: 'active',
-              subscription_plan: userType,
-              subscription_expires_at: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(), // 30 days
+              subscription_status: 'active' as any,
+              subscription_plan: userType as string,
+              subscription_expires_at: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
             })
             .eq('id', userId)
 
@@ -59,7 +62,7 @@ export async function POST(request: NextRequest) {
           const { error } = await supabase
             .from('profiles')
             .update({
-              subscription_status: subscription.status === 'active' ? 'active' : 'canceled',
+              subscription_status: (subscription.status === 'active' ? 'active' : 'canceled') as any,
               subscription_expires_at: new Date(subscription.current_period_end * 1000).toISOString(),
             })
             .eq('id', userId)
@@ -79,7 +82,7 @@ export async function POST(request: NextRequest) {
           const { error } = await supabase
             .from('profiles')
             .update({
-              subscription_status: 'canceled',
+              subscription_status: 'canceled' as any,
               subscription_plan: null,
               subscription_expires_at: null,
             })

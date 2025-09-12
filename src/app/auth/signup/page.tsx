@@ -80,7 +80,7 @@ export default function SignupPage() {
             user_type: userType,
             company_name: userType === 'founder' ? companyName : null,
             business_registration_number: userType === 'founder' ? businessRegistrationNumber : null,
-          })
+          } as any)
 
         if (profileError) {
           setError('프로필 생성 중 오류가 발생했습니다.')
