@@ -24,6 +24,8 @@ export default function SignupPage() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [step, setStep] = useState(1)
+  const [isVerified, setIsVerified] = useState(false)
+  const [verifying, setVerifying] = useState(false)
   const router = useRouter()
 
   const handleBasicSignup = async (e: React.FormEvent) => {
@@ -97,12 +99,52 @@ export default function SignupPage() {
     }
   }
 
+  const verifyBusinessNumber = async () => {
+    if (!businessRegistrationNumber || !companyName) {
+      setError('회사명과 사업자등록번호를 모두 입력해주세요.')
+      return
+    }
+
+    setVerifying(true)
+    setError('')
+
+    try {
+      const response = await fetch('/api/verify-business', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          businessNumber: businessRegistrationNumber,
+          companyName: companyName,
+        }),
+      })
+
+      const result = await response.json()
+
+      if (result.success) {
+        setIsVerified(true)
+        setError('')
+      } else {
+        setError(result.message || '사업자등록번호 검증에 실패했습니다.')
+      }
+    } catch (error) {
+      setError('검증 중 오류가 발생했습니다.')
+    } finally {
+      setVerifying(false)
+    }
+  }
+
   const handleCompleteSignup = async (e: React.FormEvent) => {
     e.preventDefault()
     
     if (userType === 'founder') {
       if (!companyName || !businessRegistrationNumber) {
         setError('회사명과 사업자등록번호를 모두 입력해주세요.')
+        return
+      }
+      if (!isVerified) {
+        setError('사업자등록번호 검증이 필요합니다.')
         return
       }
     }
@@ -256,7 +298,7 @@ export default function SignupPage() {
                     <label htmlFor="businessRegistrationNumber" className="block text-sm font-medium text-gray-700">
                       사업자등록번호
                     </label>
-                    <div className="mt-1">
+                    <div className="mt-1 flex space-x-2">
                       <input
                         id="businessRegistrationNumber"
                         name="businessRegistrationNumber"
@@ -264,11 +306,30 @@ export default function SignupPage() {
                         placeholder="123-45-67890"
                         required
                         value={businessRegistrationNumber}
-                        onChange={(e) => setBusinessRegistrationNumber(e.target.value)}
-                        className="input-field"
+                        onChange={(e) => {
+                          setBusinessRegistrationNumber(e.target.value)
+                          setIsVerified(false)
+                        }}
+                        className="input-field flex-1"
+                        disabled={isVerified}
                       />
+                      <Button
+                        type="button"
+                        variant="outline"
+                        onClick={verifyBusinessNumber}
+                        disabled={verifying || isVerified || !businessRegistrationNumber || !companyName}
+                      >
+                        {verifying ? '검증 중...' : isVerified ? '✓ 검증완료' : '검증'}
+                      </Button>
                     </div>
-                    <p className="mt-1 text-sm text-gray-500">사업자등록번호로 회사 인증을 진행합니다</p>
+                    <p className="mt-1 text-sm text-gray-500">
+                      {isVerified ? '✓ 사업자등록번호가 확인되었습니다' : '사업자등록번호로 회사 인증을 진행합니다'}
+                    </p>
+                    {isVerified && (
+                      <p className="mt-1 text-sm text-green-600">
+                        베타 테스트 기간 - 자동 승인됨
+                      </p>
+                    )}
                   </div>
                 </>
               )}
