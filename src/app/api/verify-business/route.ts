@@ -82,30 +82,97 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // 실제 API 호출 (국세청 또는 기타 서비스)
-    // const apiKey = process.env.BUSINESS_VERIFICATION_API_KEY
-    // const response = await fetch('https://api.odcloud.kr/api/nts-businessman/v1/status', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'Authorization': `Bearer ${apiKey}`
-    //   },
-    //   body: JSON.stringify({
-    //     b_no: [cleanNumber]
-    //   })
-    // })
-
-    // 임시 응답 (실제 서비스에서는 위의 API 응답 사용)
-    return NextResponse.json({
-      success: true,
-      message: '베타 테스트 기간 - 자동 승인',
-      data: {
-        businessNumber: businessNumber,
-        companyName: companyName,
-        status: 'active',
-        verified: true
+    // 실제 국세청 API 호출
+    try {
+      const apiKey = process.env.NTS_API_KEY || process.env.BUSINESS_VERIFICATION_API_KEY
+      
+      if (!apiKey) {
+        console.error('NTS API key not configured')
+        // API 키가 없을 때 폴백
+        return NextResponse.json({
+          success: true,
+          message: '베타 테스트 기간 - 자동 승인',
+          data: {
+            businessNumber: businessNumber,
+            companyName: companyName,
+            status: 'active',
+            verified: true
+          }
+        })
       }
-    })
+
+      // 국세청 API 호출
+      const response = await fetch('https://api.odcloud.kr/api/nts-businessman/v1/status', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${apiKey}`
+        },
+        body: JSON.stringify({
+          b_no: [cleanNumber]
+        })
+      })
+
+      if (!response.ok) {
+        console.error('NTS API error:', response.status, response.statusText)
+        throw new Error('API 호출 실패')
+      }
+
+      const result = await response.json()
+      
+      // API 응답 처리
+      if (result.status_code === 'OK' && result.data && result.data.length > 0) {
+        const businessInfo = result.data[0]
+        
+        // 사업자 상태 확인 (01: 계속사업자, 02: 휴업자, 03: 폐업자)
+        if (businessInfo.b_stt === '01') {
+          return NextResponse.json({
+            success: true,
+            message: '사업자등록번호가 확인되었습니다.',
+            data: {
+              businessNumber: businessNumber,
+              companyName: companyName, // 국세청 API는 상호명을 제공하지 않음
+              status: 'active',
+              verified: true,
+              taxType: businessInfo.tax_type, // 과세 유형
+              businessStatus: businessInfo.b_stt_cd, // 납세자 상태
+              verificationSource: 'nts_api'
+            }
+          })
+        } else if (businessInfo.b_stt === '02') {
+          return NextResponse.json({
+            success: false,
+            message: '휴업 상태의 사업자입니다.',
+          })
+        } else if (businessInfo.b_stt === '03') {
+          return NextResponse.json({
+            success: false,
+            message: '폐업 상태의 사업자입니다.',
+          })
+        }
+      }
+      
+      return NextResponse.json({
+        success: false,
+        message: '등록되지 않은 사업자등록번호입니다.',
+      })
+      
+    } catch (apiError) {
+      console.error('NTS API call failed:', apiError)
+      
+      // API 호출 실패시 폴백 (테스트 모드)
+      return NextResponse.json({
+        success: true,
+        message: '임시 승인 (API 연결 실패)',
+        data: {
+          businessNumber: businessNumber,
+          companyName: companyName,
+          status: 'active',
+          verified: true,
+          verificationSource: 'fallback'
+        }
+      })
+    }
 
   } catch (error) {
     console.error('Business verification error:', error)
