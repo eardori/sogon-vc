@@ -9,9 +9,9 @@ import { Button } from '@/components/ui/button'
 type UserType = 'prospective_founder' | 'founder' | 'vc_general'
 
 const userTypeOptions = [
-  { value: 'prospective_founder', label: '예비창업자', description: '$2.99/월 - 후기 열람, 댓글 작성' },
-  { value: 'founder', label: '창업자', description: '$1.99/월 - 후기 작성 및 열람 (할인가)' },
-  { value: 'vc_general', label: 'VC', description: '$2.99/월 - 답변 작성, 후기 열람' },
+  { value: 'prospective_founder', label: '예비창업자', description: '투자 유치를 준비 중인 예비창업자' },
+  { value: 'founder', label: '창업자', description: '실제 투자 경험이 있는 창업자 (후기 작성 가능)' },
+  { value: 'vc_general', label: 'VC', description: '벤처캐피털 투자심사역/파트너 (답변 작성 가능)' },
 ]
 
 export default function SignupPage() {
