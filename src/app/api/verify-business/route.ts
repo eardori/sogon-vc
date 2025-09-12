@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-// 국세청 사업자등록번호 진위확인 API
-// 실제 서비스에서는 공공데이터포털 API 키가 필요합니다
-// https://www.data.go.kr/data/15081808/openapi.do
+// 사업자등록번호 검증 API 옵션:
+// 1. 국세청 API: https://www.data.go.kr/data/15081808/openapi.do
+// 2. 비즈노 API: https://bizno.net/api/fapi 
+// 3. 네이버 검색 API를 통한 간접 조회
 
 export async function POST(request: NextRequest) {
   try {
@@ -35,28 +36,42 @@ export async function POST(request: NextRequest) {
     }
 
     // 베타 테스트 기간 동안 임시 검증 로직
-    // 실제 운영시에는 국세청 API 또는 다른 검증 서비스 사용
     const isTestMode = process.env.BUSINESS_VERIFICATION_TEST_MODE === 'true'
     
     if (isTestMode) {
-      // 테스트 모드: 특정 번호만 유효하다고 가정
-      const testValidNumbers = [
-        '1234567890', // 테스트용 유효 번호
-        '0000000000', // 테스트용 유효 번호
-      ]
+      // 테스트용 회사 데이터베이스
+      const testCompanies: { [key: string]: string } = {
+        '1234567890': '테스트 주식회사',
+        '0000000000': '샘플 스타트업',
+        '1238861322': '쿠팡 주식회사',
+        '1068633881': '당근마켓 주식회사',
+        '2208162517': '토스 (비바리퍼블리카)',
+        '1078783297': '배달의민족 (우아한형제들)',
+        '2118868802': '야놀자',
+        '1058721854': '무신사',
+        '1138610378': '리디 주식회사',
+        '3128700741': '크래프톤',
+        // 123으로 시작하는 번호는 자동으로 회사명 생성
+      }
       
-      const isValid = testValidNumbers.includes(cleanNumber) || 
-                     cleanNumber.startsWith('123') // 123으로 시작하는 번호는 테스트용으로 허용
+      let detectedCompanyName = testCompanies[cleanNumber]
       
-      if (isValid) {
+      // 123으로 시작하는 번호는 테스트용으로 자동 승인
+      if (!detectedCompanyName && cleanNumber.startsWith('123')) {
+        detectedCompanyName = companyName || `테스트기업_${cleanNumber.slice(-4)}`
+      }
+      
+      if (detectedCompanyName) {
         return NextResponse.json({
           success: true,
           message: '사업자등록번호가 확인되었습니다.',
           data: {
             businessNumber: businessNumber,
-            companyName: companyName,
+            companyName: detectedCompanyName, // 검증된 회사명 반환
+            originalCompanyName: companyName, // 사용자가 입력한 회사명
             status: 'active',
-            verified: true
+            verified: true,
+            verificationSource: 'test_database'
           }
         })
       } else {

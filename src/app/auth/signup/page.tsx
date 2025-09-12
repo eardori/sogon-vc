@@ -125,6 +125,12 @@ export default function SignupPage() {
       if (result.success) {
         setIsVerified(true)
         setError('')
+        // 검증된 회사명으로 자동 업데이트
+        if (result.data?.companyName && result.data.companyName !== companyName) {
+          setCompanyName(result.data.companyName)
+          // 사용자에게 알림
+          alert(`회사명이 "${result.data.companyName}"(으)로 확인되었습니다.`)
+        }
       } else {
         setError(result.message || '사업자등록번호 검증에 실패했습니다.')
       }
