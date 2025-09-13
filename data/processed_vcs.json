@@ -1,0 +1,162 @@
+[
+  {
+    "name": "해시드",
+    "type": "Accelerator",
+    "country": "한국",
+    "website": "https://www.hashed.com/",
+    "email_domain": "hashed.com",
+    "main_investment_stages": [
+      "seed",
+      "pre_a",
+      "series_a"
+    ],
+    "investment_count": 79,
+    "portfolio_count": 8,
+    "description": "액셀러레이터 / 한국",
+    "is_active": true
+  },
+  {
+    "name": "한화투자증권",
+    "type": "Financial Institution",
+    "country": "한국",
+    "website": "https://www.hanwhawm.com/",
+    "email_domain": "hanwhawm.com",
+    "main_investment_stages": [
+      "series_a",
+      "series_b",
+      "series_c"
+    ],
+    "investment_count": 86,
+    "portfolio_count": 7,
+    "description": "금융회사 / 한국",
+    "is_active": true
+  },
+  {
+    "name": "에스오에스벤처스",
+    "type": "VC",
+    "country": "미국",
+    "website": "https://sosv.com/",
+    "email_domain": "sosv.com",
+    "main_investment_stages": [
+      "seed",
+      "pre_a",
+      "series_a"
+    ],
+    "investment_count": 9,
+    "portfolio_count": 3,
+    "description": "벤처캐피탈 / 미국",
+    "is_active": true
+  },
+  {
+    "name": "본엔젤스벤처파트너스",
+    "type": "VC",
+    "country": "한국",
+    "website": "http://www.bonangels.net/",
+    "email_domain": "bonangels.net",
+    "main_investment_stages": [
+      "seed",
+      "pre_a",
+      "series_a"
+    ],
+    "investment_count": 279,
+    "portfolio_count": 9,
+    "description": "벤처캐피탈 / 한국",
+    "is_active": true
+  },
+  {
+    "name": "에스비브이에이",
+    "type": "VC",
+    "country": "일본",
+    "website": null,
+    "email_domain": null,
+    "main_investment_stages": [
+      "pre_a",
+      "series_a",
+      "series_b"
+    ],
+    "investment_count": 183,
+    "portfolio_count": 10,
+    "description": "벤처캐피탈 / 일본",
+    "is_active": true
+  },
+  {
+    "name": "알토스벤처스",
+    "type": "VC",
+    "country": "미국",
+    "website": null,
+    "email_domain": null,
+    "main_investment_stages": [
+      "series_a",
+      "series_b",
+      "series_c"
+    ],
+    "investment_count": 170,
+    "portfolio_count": 19,
+    "description": "벤처캐피탈 / 미국",
+    "is_active": true
+  },
+  {
+    "name": "케이비인베스트먼트",
+    "type": "VC",
+    "country": "한국",
+    "website": null,
+    "email_domain": null,
+    "main_investment_stages": [
+      "pre_a",
+      "series_a",
+      "series_b"
+    ],
+    "investment_count": 446,
+    "portfolio_count": 11,
+    "description": "벤처캐피탈 / 한국",
+    "is_active": true
+  },
+  {
+    "name": "쏠리드엑스",
+    "type": "CVC",
+    "country": "한국",
+    "website": null,
+    "email_domain": null,
+    "main_investment_stages": [
+      "seed",
+      "pre_a",
+      "series_a"
+    ],
+    "investment_count": 4,
+    "portfolio_count": 3,
+    "description": "기업벤처캐피탈 / 한국",
+    "is_active": true
+  },
+  {
+    "name": "그래비티벤처스",
+    "type": "VC",
+    "country": "한국",
+    "website": null,
+    "email_domain": null,
+    "main_investment_stages": [
+      "seed",
+      "pre_a",
+      "series_a"
+    ],
+    "investment_count": 36,
+    "portfolio_count": 6,
+    "description": "벤처캐피탈 / 한국",
+    "is_active": true
+  },
+  {
+    "name": "스타벤처스",
+    "type": "Accelerator",
+    "country": "한국",
+    "website": null,
+    "email_domain": null,
+    "main_investment_stages": [
+      "seed",
+      "pre_a",
+      "series_a"
+    ],
+    "investment_count": 11,
+    "portfolio_count": 3,
+    "description": "액셀러레이터 / 한국",
+    "is_active": true
+  }
+]

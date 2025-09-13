@@ -1,0 +1,207 @@
+{
+  "scraped_at": "2025-09-12T15:57:02.364Z",
+  "source": "https://thevc.kr/browse/investors",
+  "total_count": 10,
+  "vcs": [
+    {
+      "name": "해시드비상장",
+      "type": "액셀러레이터",
+      "country": "한국",
+      "certification": "해당 없음",
+      "investment_count": "79건",
+      "portfolio_count": "8",
+      "stages": [
+        "Seed37개사Series A22개사Pre-A10개사+2"
+      ],
+      "technologies": [
+        "블록체인34개사리얼타임 커뮤니케이션11개사전자상거래6개사+13"
+      ],
+      "sectors": [
+        "블록체인  자산관리7개사금융  송금/결제4개사블록체인  인프라4개사+44"
+      ],
+      "last_investment_date": "2025-09-12",
+      "profile_url": "https://thevc.kr/hashed",
+      "website": ""
+    },
+    {
+      "name": "한화투자증권상장",
+      "type": "금융회사",
+      "country": "한국",
+      "certification": "해당 없음",
+      "investment_count": "86건",
+      "portfolio_count": "7",
+      "stages": [
+        "Series A41개사Series B25개사Series C9개사+4"
+      ],
+      "technologies": [
+        "제조18개사연구개발11개사사물인터넷/센서9개사+17"
+      ],
+      "sectors": [
+        "금융  송금/결제7개사환경/에너지  폐기물/쓰레기4개사반도체/디스플레이  반도체4개사+58"
+      ],
+      "last_investment_date": "2025-09-12",
+      "profile_url": "https://thevc.kr/hanwhasecurities",
+      "website": ""
+    },
+    {
+      "name": "에스오에스벤처스비상장",
+      "type": "벤처캐피탈",
+      "country": "미국",
+      "certification": "해당 없음",
+      "investment_count": "9건",
+      "portfolio_count": "3",
+      "stages": [
+        "Seed6개사Pre-A2개사Series A1개사"
+      ],
+      "technologies": [
+        "소셜네트워크1개사이미지/영상처리1개사음악/영상스트리밍1개사+6"
+      ],
+      "sectors": [
+        "엔터테인먼트  연예인1개사콘텐츠  애니메이션/웹툰1개사음식/외식  식자재1개사+6"
+      ],
+      "last_investment_date": "2025-09-12",
+      "profile_url": "https://thevc.kr/sosv",
+      "website": ""
+    },
+    {
+      "name": "본엔젤스벤처파트너스비상장",
+      "type": "벤처캐피탈",
+      "country": "한국",
+      "certification": "💰 팁스(TIPS) 운영사",
+      "investment_count": "279건",
+      "portfolio_count": "9",
+      "stages": [
+        "Seed154개사Pre-A72개사Series A36개사+3"
+      ],
+      "technologies": [
+        "전자상거래42개사인공지능42개사리얼타임 커뮤니케이션39개사+22"
+      ],
+      "sectors": [
+        "광고마케팅  마케팅솔루션9개사엔터프라이즈  채용6개사여행  여행상품/가이드5개사+152"
+      ],
+      "last_investment_date": "2025-09-12",
+      "profile_url": "https://thevc.kr/bonangelsventurepartners",
+      "website": ""
+    },
+    {
+      "name": "에스비브이에이비상장",
+      "type": "벤처캐피탈",
+      "country": "일본",
+      "certification": "해당 없음",
+      "investment_count": "183건",
+      "portfolio_count": "10",
+      "stages": [
+        "Series A80개사Series B48개사Pre-A18개사+5"
+      ],
+      "technologies": [
+        "전자상거래37개사인공지능27개사리얼타임 커뮤니케이션15개사+23"
+      ],
+      "sectors": [
+        "금융  송금/결제9개사교육  수학교육6개사바이오/의료  이미지/영상6개사+93"
+      ],
+      "last_investment_date": "2025-09-12",
+      "profile_url": "https://thevc.kr/sbva",
+      "website": ""
+    },
+    {
+      "name": "알토스벤처스비상장",
+      "type": "벤처캐피탈",
+      "country": "미국",
+      "certification": "해당 없음",
+      "investment_count": "170건",
+      "portfolio_count": "19",
+      "stages": [
+        "Series A69개사Series B45개사Series C21개사+7"
+      ],
+      "technologies": [
+        "전자상거래47개사리얼타임 커뮤니케이션23개사클라우드12개사+18"
+      ],
+      "sectors": [
+        "금융  송금/결제12개사뷰티  화장품7개사패션  의류6개사+68"
+      ],
+      "last_investment_date": "2025-09-12",
+      "profile_url": "https://thevc.kr/altosventures",
+      "website": ""
+    },
+    {
+      "name": "케이비인베스트먼트비상장",
+      "type": "벤처캐피탈",
+      "country": "한국",
+      "certification": "💰 팁스(TIPS) 운영사",
+      "investment_count": "446건",
+      "portfolio_count": "11",
+      "stages": [
+        "Series A154개사Series B116개사Pre-A84개사+7"
+      ],
+      "technologies": [
+        "연구개발72개사인공지능69개사제조50개사+25"
+      ],
+      "sectors": [
+        "바이오/의료  항암제18개사바이오/의료  약품/약물16개사반도체/디스플레이  반도체15개사+180"
+      ],
+      "last_investment_date": "2025-09-12",
+      "profile_url": "https://thevc.kr/kbinvestment",
+      "website": ""
+    },
+    {
+      "name": "쏠리드엑스비상장",
+      "type": "기업벤처캐피탈",
+      "country": "한국",
+      "certification": "해당 없음",
+      "investment_count": "4건",
+      "portfolio_count": "3",
+      "stages": [
+        "Pre-A2개사Series A1개사Seed1개사"
+      ],
+      "technologies": [
+        "사물인터넷/센서2개사제조1개사연구개발1개사"
+      ],
+      "sectors": [
+        "우주/항공  통신1개사반려동물  모니터링1개사바이오/의료  약품/약물1개사+1"
+      ],
+      "last_investment_date": "2025-09-11",
+      "profile_url": "https://thevc.kr/solidx",
+      "website": ""
+    },
+    {
+      "name": "그래비티벤처스비상장",
+      "type": "벤처캐피탈",
+      "country": "한국",
+      "certification": "해당 없음",
+      "investment_count": "36건",
+      "portfolio_count": "6",
+      "stages": [
+        "Seed19개사Pre-A9개사Series A5개사+2"
+      ],
+      "technologies": [
+        "제조13개사인공지능7개사클라우드4개사+10"
+      ],
+      "sectors": [
+        "환경/에너지  폐기물/쓰레기2개사축산업  로봇2개사우주/항공  통신2개사+28"
+      ],
+      "last_investment_date": "2025-09-11",
+      "profile_url": "https://thevc.kr/gravityventures",
+      "website": ""
+    },
+    {
+      "name": "스타벤처스비상장",
+      "type": "액셀러레이터",
+      "country": "한국",
+      "certification": "해당 없음",
+      "investment_count": "11건",
+      "portfolio_count": "3",
+      "stages": [
+        "Seed8개사Pre-A2개사Series A1개사"
+      ],
+      "technologies": [
+        "빅데이터/분석3개사리얼타임 커뮤니케이션3개사제조2개사+3"
+      ],
+      "sectors": [
+        "수산업  낚시1개사금융  자산관리1개사금융  보험1개사+8"
+      ],
+      "last_investment_date": "2025-09-11",
+      "profile_url": "https://thevc.kr/starventures",
+      "website": ""
+    }
+  ]
+}
