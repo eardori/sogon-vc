@@ -200,7 +200,7 @@ export default function SignupPage() {
         return
       }
 
-      if (data.user) {
+      if (data?.user) {
         // 프로필 생성
         const { error: profileError } = await supabase
           .from('profiles')
