@@ -201,18 +201,31 @@ export default function SignupPage() {
       }
 
       if (data?.user) {
-        // 프로필 생성
-        const { error: profileError } = await supabase
-          .from('profiles')
-          .insert({
-            id: data.user.id,
-            email,
-            user_type: userType,
-            company_name: userType === 'founder' ? companyName : null,
-            business_registration_number: userType === 'founder' ? businessRegistrationNumber : null,
-          } as any)
+        // 프로필 생성 - API 라우트를 통해 생성
+        try {
+          const response = await fetch('/api/create-profile', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              userId: data.user.id,
+              email,
+              userType,
+              companyName: userType === 'founder' ? companyName : null,
+              businessRegistrationNumber: userType === 'founder' ? businessRegistrationNumber : null,
+            }),
+          })
 
-        if (profileError) {
+          if (!response.ok) {
+            const error = await response.json()
+            console.error('Profile creation error:', error)
+            setError('프로필 생성 중 오류가 발생했습니다.')
+            setLoading(false)
+            return
+          }
+        } catch (error) {
+          console.error('Profile creation error:', error)
           setError('프로필 생성 중 오류가 발생했습니다.')
           setLoading(false)
           return
