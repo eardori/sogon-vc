@@ -419,10 +419,14 @@ export default function SignupPage() {
                     {emailError}
                   </p>
                 )}
-                {!emailError && (userType === 'founder' || userType === 'vc_general') && (
-                  <p className="mt-1 text-sm text-orange-600">
-                    ⚠️ {userType === 'founder' ? '창업자' : 'VC'}는 반드시 회사 이메일 주소를 사용해주세요
-                  </p>
+                {!emailError && email && (userType === 'founder' || userType === 'vc_general') && (
+                  <>
+                    {email.includes('@gmail.com') || email.includes('@naver.com') || email.includes('@daum.net') || email.includes('@kakao.com') || email.includes('@hanmail.net') || email.includes('@hotmail.com') || email.includes('@yahoo.com') || email.includes('@outlook.com') || email.includes('@icloud.com') ? (
+                      <p className="mt-1 text-sm text-orange-600">
+                        ⚠️ {userType === 'founder' ? '창업자' : 'VC'}는 반드시 회사 이메일 주소를 사용해주세요
+                      </p>
+                    ) : null}
+                  </>
                 )}
               </div>
 
@@ -618,11 +622,6 @@ export default function SignupPage() {
                     {isVerified && companyName && companyName !== '(회사명 확인 중)' && (
                       <p className="mt-1 text-sm text-green-600">
                         ✓ 검증된 회사명: {companyName}
-                      </p>
-                    )}
-                    {isVerified && (
-                      <p className="mt-1 text-sm text-blue-600">
-                        베타 테스트 기간 - 자동 승인됨
                       </p>
                     )}
                   </div>
